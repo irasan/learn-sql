@@ -12,12 +12,10 @@ connection = pymysql.connect(host='localhost',
                              db='Chinook')
 
 try:
-    # Run a query
     with connection.cursor() as cursor:
-        sql = "SELECT * FROM Artist;"
-        cursor.execute(sql)
-        result = cursor.fetchall()
-        print(result)
+        row = ("Bob", 21, "1990-02-06 23:04:56")
+        cursor.execute("INSERT INTO Friends VALUES (%s, %s, %s);", row)
+        connection.commit()
 finally:
     # Close the connection, regardless of whether or not the 
     # above was successful
